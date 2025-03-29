@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7ab9ba81-52b9-4486-a906-0a5b53a0e6af}">
+		<property name="assetPath">
+			<value>ftus_f1_cars_race_25m_distance_track_training_voices_in_bg_singapore_001_290.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>90.456000000000003</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{29be0f50-d975-4357-8fd8-709eea789d24}</destination>
+		</relationship>
+	</object>
+</objects>
