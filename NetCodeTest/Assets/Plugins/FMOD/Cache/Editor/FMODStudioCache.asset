@@ -1,0 +1,966 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9172283233698322646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MainGame 2/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3978441789
+    data2: 1195332759
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Value A
+  - Value B
+  Exists: 1
+--- !u!114 &-8802179001816795876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/TakingDamage
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/TakingDamage
+  Guid:
+    Data1: 1300288454
+    Data2: 1325178668
+    Data3: -1101689728
+    Data4: 801494058
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &-8764605531023536528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pickups/Speed
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pickups/Speed
+  Guid:
+    Data1: -755944875
+    Data2: 1337768090
+    Data3: -1097020243
+    Data4: 1989783854
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2750
+--- !u!114 &-8629905891655334143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3978441789
+    data2: 1195332759
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Value A
+  - Value B
+  Exists: 1
+--- !u!114 &-6870010994052572441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/WalkSpeed/WalkSpeed
+  m_EditorClassIdentifier: 
+  Name: WalkSpeed
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 94512206
+    data2: 1019907115
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-6341450081024891368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Menu
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Menu
+  Guid:
+    Data1: -570979183
+    Data2: 1100232815
+    Data3: 1971664294
+    Data4: 710336169
+  Banks:
+  - {fileID: 5270402679215343274}
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 60000
+--- !u!114 &-6200114758744620866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk 2/WalkSpeed
+  m_EditorClassIdentifier: 
+  Name: WalkSpeed
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 94512206
+    data2: 1019907115
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-4673889214747210020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Walk/WalkSpeed
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Walk/WalkSpeed
+  Guid:
+    Data1: 694679438
+    Data2: 1298739772
+    Data3: -1447570756
+    Data4: 2033472646
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6870010994052572441}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4566567674774604122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Death
+  Guid:
+    Data1: -375627180
+    Data2: 1192815057
+    Data3: 1107851136
+    Data4: -2126915976
+  Banks:
+  - {fileID: -2613267530607381776}
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3500
+--- !u!114 &-3869545095756530025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/Click
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/Click
+  Guid:
+    Data1: -475440240
+    Data2: 1208886187
+    Data3: 1190049965
+    Data4: 1592620331
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 281
+--- !u!114 &-3765288605924770827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/UI
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/UI
+  Guid:
+    Data1: 1971807792
+    Data2: 1120141415
+    Data3: -168754527
+    Data4: -805931079
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2616984536054788269}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3081841287867896589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/Music
+  m_EditorClassIdentifier: 
+  Name: Music
+  StudioPath: 
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 3819910593
+    data2: 603558281
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-2898116644095978563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UI/Hover
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UI/Hover
+  Guid:
+    Data1: 295383670
+    Data2: 1135755468
+    Data3: 343313332
+    Data4: -50733064
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &-2839843972137497902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MainGame
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MainGame
+  Guid:
+    Data1: -1781781682
+    Data2: 1249848574
+    Data3: -492629616
+    Data4: -649673122
+  Banks:
+  - {fileID: 5270402679215343274}
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2297498632931076336}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 87000
+--- !u!114 &-2613267530607381776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/PlayerSFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/NetCodeTest/Build/Desktop/PlayerSFX.bank
+  Name: PlayerSFX
+  StudioPath: bank:/PlayerSFX
+  lastModified: 638786856682597462
+  FileSizes:
+  - Name: Desktop
+    Value: 175904
+  Exists: 1
+--- !u!114 &-368503263349446175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pickups/DamageBuff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pickups/DamageBuff
+  Guid:
+    Data1: 808596855
+    Data2: 1106840070
+    Data3: -726573937
+    Data4: -1985659897
+  Banks:
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 3162461108281680166}
+  - {fileID: 5090144437764033941}
+  - {fileID: 5270402679215343274}
+  - {fileID: 3015741516766062925}
+  - {fileID: -2613267530607381776}
+  EditorEvents:
+  - {fileID: -6341450081024891368}
+  - {fileID: -2839843972137497902}
+  - {fileID: 4039338429419518069}
+  - {fileID: 7914843215866446320}
+  - {fileID: 5485231718640513837}
+  - {fileID: 4849350884652106123}
+  - {fileID: 4371939744784108014}
+  - {fileID: 5927749536556807622}
+  - {fileID: 4208568652058143809}
+  - {fileID: -368503263349446175}
+  - {fileID: 399086780675272218}
+  - {fileID: 8540723549707345629}
+  - {fileID: 7961958434972701374}
+  - {fileID: 6652028707123512280}
+  - {fileID: -4673889214747210020}
+  - {fileID: 6404383568671292389}
+  - {fileID: -2898116644095978563}
+  - {fileID: -3869545095756530025}
+  - {fileID: -8802179001816795876}
+  - {fileID: -3765288605924770827}
+  - {fileID: -4566567674774604122}
+  - {fileID: -8764605531023536528}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 5090144437764033941}
+  StringsBanks:
+  - {fileID: 3162461108281680166}
+  cacheTime: 638787721205446452
+  cacheVersion: 131623
+--- !u!114 &399086780675272218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pickups/Debuff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pickups/Debuff
+  Guid:
+    Data1: 123831271
+    Data2: 1135793698
+    Data3: 1805529477
+    Data4: 328045014
+  Banks:
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 906
+--- !u!114 &1065754661928493920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Walk/WalkSpeed
+  m_EditorClassIdentifier: 
+  Name: WalkSpeed
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 94512206
+    data2: 1019907115
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2297498632931076336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MainGame/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3978441789
+    data2: 1195332759
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Value A
+  - Value B
+  Exists: 1
+--- !u!114 &2616984536054788269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/UI/UI
+  m_EditorClassIdentifier: 
+  Name: UI
+  StudioPath: 
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 1884476559
+    data2: 1997106036
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3015741516766062925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/NetCodeTest/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638786869412167472
+  FileSizes:
+  - Name: Desktop
+    Value: 1429280
+  Exists: 1
+--- !u!114 &3162461108281680166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/NetCodeTest/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638787721205446452
+  FileSizes:
+  - Name: Desktop
+    Value: 2264
+  Exists: 1
+--- !u!114 &4039338429419518069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Shoot
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Shoot
+  Guid:
+    Data1: -2040723621
+    Data2: 1140486759
+    Data3: -1062925176
+    Data4: 766200463
+  Banks:
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &4208568652058143809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/TimeBuffer
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/TimeBuffer
+  Guid:
+    Data1: 353620054
+    Data2: 1266191934
+    Data3: -2018589519
+    Data4: -863166000
+  Banks:
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13728
+--- !u!114 &4371939744784108014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Win
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Win
+  Guid:
+    Data1: 1491863713
+    Data2: 1316645220
+    Data3: 1479257512
+    Data4: -1596597688
+  Banks:
+  - {fileID: 5270402679215343274}
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 26250
+--- !u!114 &4849350884652106123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Lose
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Lose
+  Guid:
+    Data1: 1395163015
+    Data2: 1155759427
+    Data3: 1534479008
+    Data4: -1099475125
+  Banks:
+  - {fileID: 5270402679215343274}
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 26250
+--- !u!114 &5090144437764033941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/NetCodeTest/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638787721205426394
+  FileSizes:
+  - Name: Desktop
+    Value: 5439296
+  Exists: 1
+--- !u!114 &5270402679215343274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/NetCodeTest/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638785203251728641
+  FileSizes:
+  - Name: Desktop
+    Value: 3303584
+  Exists: 1
+--- !u!114 &5485231718640513837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music
+  Guid:
+    Data1: -1179857370
+    Data2: 1137816706
+    Data3: 468220826
+    Data4: -1621648140
+  Banks:
+  - {fileID: 5270402679215343274}
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -3081841287867896589}
+  - {fileID: -8629905891655334143}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5927749536556807622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pickups/Health
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pickups/Health
+  Guid:
+    Data1: 1702938375
+    Data2: 1233482031
+    Data3: -1475613535
+    Data4: 514163048
+  Banks:
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &6404383568671292389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Walk/Walk 2
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Walk/Walk 2
+  Guid:
+    Data1: 605506460
+    Data2: 1224407998
+    Data3: 1498268337
+    Data4: -1862586800
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6200114758744620866}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 281
+--- !u!114 &6652028707123512280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Walk/Walk
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Walk/Walk
+  Guid:
+    Data1: 1180349271
+    Data2: 1316844084
+    Data3: 1743175824
+    Data4: 1118101144
+  Banks:
+  - {fileID: 3015741516766062925}
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 1065754661928493920}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
+--- !u!114 &7914843215866446320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Jump
+  Guid:
+    Data1: 825049263
+    Data2: 1250267458
+    Data3: -782339680
+    Data4: -121092229
+  Banks:
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &7961958434972701374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MainGame 2
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MainGame 2
+  Guid:
+    Data1: 1278705084
+    Data2: 1111201734
+    Data3: 2088897672
+    Data4: 749022288
+  Banks:
+  - {fileID: 5270402679215343274}
+  - {fileID: 5090144437764033941}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -9172283233698322646}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 87000
+--- !u!114 &8540723549707345629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Pickups/Buff
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Pickups/Buff
+  Guid:
+    Data1: -2105432083
+    Data2: 1288419507
+    Data3: 1548357539
+    Data4: 818508379
+  Banks:
+  - {fileID: 5090144437764033941}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000

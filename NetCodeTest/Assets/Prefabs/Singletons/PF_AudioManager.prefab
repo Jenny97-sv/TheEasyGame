@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6060721518716637906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8273594742183204820}
+  - component: {fileID: 1397943004243689533}
+  m_Layer: 0
+  m_Name: PF_AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8273594742183204820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060721518716637906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2752213, y: 0, z: 0.96138096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1397943004243689533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060721518716637906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ddccbe73a8b6444a752d3993fb88ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Description: Make sure to ALWAYS name the enum EXACTLY like the FMOD event!
+  musics:
+  - music: 0
+    reference:
+      Guid:
+        Data1: -1179857370
+        Data2: 1137816706
+        Data3: 468220826
+        Data4: -1621648140
+      Path: event:/Music/Music
+  - music: 5
+    reference:
+      Guid:
+        Data1: 353620054
+        Data2: 1266191934
+        Data3: -2018589519
+        Data4: -863166000
+      Path: event:/SFX/Player/TimeBuffer
+  sounds:
+  - sound: 0
+    reference:
+      Guid:
+        Data1: 825049263
+        Data2: 1250267458
+        Data3: -782339680
+        Data4: -121092229
+      Path: event:/SFX/Player/Jump
+  - sound: 1
+    reference:
+      Guid:
+        Data1: -2040723621
+        Data2: 1140486759
+        Data3: -1062925176
+        Data4: 766200463
+      Path: event:/SFX/Player/Shoot
+  - sound: 2
+    reference:
+      Guid:
+        Data1: 694679438
+        Data2: 1298739772
+        Data3: -1447570756
+        Data4: 2033472646
+      Path: event:/SFX/Player/Walk/WalkSpeed
+  - sound: 3
+    reference:
+      Guid:
+        Data1: 1300288454
+        Data2: 1325178668
+        Data3: -1101689728
+        Data4: 801494058
+      Path: event:/SFX/Player/TakingDamage
+  - sound: 4
+    reference:
+      Guid:
+        Data1: -375627180
+        Data2: 1192815057
+        Data3: 1107851136
+        Data4: -2126915976
+      Path: event:/SFX/Player/Death
+  - sound: 5
+    reference:
+      Guid:
+        Data1: 1702938375
+        Data2: 1233482031
+        Data3: -1475613535
+        Data4: 514163048
+      Path: event:/SFX/Pickups/Health
+  - sound: 6
+    reference:
+      Guid:
+        Data1: 808596855
+        Data2: 1106840070
+        Data3: -726573937
+        Data4: -1985659897
+      Path: event:/SFX/Pickups/DamageBuff
+  - sound: 7
+    reference:
+      Guid:
+        Data1: -2105432083
+        Data2: 1288419507
+        Data3: 1548357539
+        Data4: 818508379
+      Path: event:/SFX/Pickups/Buff
+  - sound: 8
+    reference:
+      Guid:
+        Data1: 123831271
+        Data2: 1135793698
+        Data3: 1805529477
+        Data4: 328045014
+      Path: event:/SFX/Pickups/Debuff
+  - sound: 9
+    reference:
+      Guid:
+        Data1: 1971807792
+        Data2: 1120141415
+        Data3: -168754527
+        Data4: -805931079
+      Path: event:/SFX/UI/UI
+  - sound: 10
+    reference:
+      Guid:
+        Data1: -475440240
+        Data2: 1208886187
+        Data3: 1190049965
+        Data4: 1592620331
+      Path: event:/SFX/UI/Click
+  - sound: 11
+    reference:
+      Guid:
+        Data1: 295383670
+        Data2: 1135755468
+        Data3: 343313332
+        Data4: -50733064
+      Path: event:/SFX/UI/Hover
