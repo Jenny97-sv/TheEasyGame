@@ -88,7 +88,7 @@ public class AudioManager : MonoBehaviour
             allVCA = RuntimeManager.GetVCA("vca:/All");
             playerSFXVCA = RuntimeManager.GetVCA("vca:/PlayerSFX");
 
-            SetVolume(0.2f);
+            SetVolume(0.05f);
         }
         else
         {

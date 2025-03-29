@@ -14,6 +14,9 @@ public class Movement : NetworkBehaviour
     private bool isJumping = false;
     private bool isMoving = false;
 
+    private bool wasGrounded = true; // Start assuming the player is on the ground
+    private bool justLanded = false; // True only for the first frame after landing
+
     private Transform cameraTransform = null;
     private float mouseSensitivity = 100f;
     public Vector3 cameraOffset = new Vector3(0, 3, -5);
@@ -22,6 +25,8 @@ public class Movement : NetworkBehaviour
     public LayerMask groundLayer;
     private Vector3 velocity = Vector3.zero;
     private float gravity = -19.81f;
+    RaycastHit hit;
+    Vector3 sphereOrigin;
     private Stats playerStats = null;
 
 
@@ -212,24 +217,30 @@ public class Movement : NetworkBehaviour
 
     private void ApplyGravity()
     {
-        isGrounded = IsGrounded(); // Check if player is on the ground
+        isGrounded = IsGrounded(); // Check if the player is on the ground
 
-        if (!isGrounded) // If not grounded, apply gravity
+        if (!isGrounded)
         {
-            isJumping = true;
             velocity.y += gravity * Time.deltaTime;
         }
-        else if (velocity.y < 0f) // If falling but close to ground, prevent infinite falling
+        else if (velocity.y < 0f)
         {
-            velocity.y = -2f;
-            isGrounded = true; // Ensure grounded status
+            velocity.y = -0.5f; // Small downward force to stick to ground
         }
 
-        if (isGrounded)
+        // Detect landing
+        if (isGrounded && !wasGrounded && isMoving)
         {
-            isJumping = false;
+            justLanded = true; // Player landed this frame
+            AudioManager.Instance.PlaySound(eSound.WalkSpeed);
         }
-            Debug.Log("IS GROUNDED = " + isGrounded);
+        else
+        {
+            //AudioManager.Instance.StopSound(eSound.WalkSpeed);
+            justLanded = false;
+        }
+
+        wasGrounded = isGrounded; // Update last frame’s ground state
 
         controller.Move(velocity * Time.deltaTime);
     }
@@ -273,31 +284,18 @@ public class Movement : NetworkBehaviour
         }
     }
 
-
     private bool IsGrounded()
     {
         if (controller.isGrounded) return true;
 
-        float groundCheckRadius = 0.3f;
-        float groundCheckDistance = 0.2f;
-        Vector3 sphereOrigin = transform.position + Vector3.up * 0.11f;
+        float groundCheckRadius = 0.1f;
+        float groundCheckDistance = 1.1f;
+        sphereOrigin = transform.position + Vector3.up * 0.11f; // why I do this? It works though
 
         isGrounded = Physics.SphereCast(sphereOrigin, groundCheckRadius, Vector3.down,
-                                           out RaycastHit hit, groundCheckDistance, groundLayer);
+                                           out hit, groundCheckDistance, groundLayer);
         return isGrounded;
     }
-
-    //private bool IsGrounded()
-    //{
-    //    if (controller.isGrounded) return true;
-
-    //    float sphereRadius = 0.3f;
-    //    Vector3 spherePosition = transform.position + Vector3.up * 0.11f;
-
-    //    isGrounded = Physics.OverlapSphere(spherePosition, sphereRadius, groundLayer).Length > 0;
-    //    return isGrounded;
-    //}
-
 
     void Update()
     {

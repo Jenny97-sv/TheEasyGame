@@ -682,8 +682,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../FMOD/NetCodeTest/NetCodeTest.fspro
-  sourceBankPath: ../FMOD/NetCodeTest/Build
+  sourceProjectPath: ../FMODNetCodeTest/NetCodeTest.fspro
+  sourceBankPath: ../FMODNetCodeTest/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
