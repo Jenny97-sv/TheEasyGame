@@ -10,5 +10,9 @@ public class MainMusic : MonoBehaviour
         //AudioManager.Instance.PlayMusic(eMusic.MainGame);
         AudioManager.Instance.StopSound(eSound.Click);
         AudioManager.Instance.SetPlayerSFXVolume(1);
+#if !UNITY_EDITOR
+        Cursor.visible = false;
+        Screen.lockCursor = true;
+#endif
     }
 }
