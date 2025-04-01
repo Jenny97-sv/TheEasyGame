@@ -15,7 +15,9 @@ public class UIShowStats : NetworkBehaviour
     private List<(Stats, TextMeshProUGUI)> opponentStatsUI = new List<(Stats, TextMeshProUGUI)>();
     private List<(Stats, Image, Image)> opponentImageUI = new List<(Stats, Image, Image)>();
     [SerializeField] private EndScreenText[] deadTexts = null;
+    [SerializeField] private EndScreenText[] lonelyTexts = null;
     private int randomDeadText = -1;
+    private int randomLonelyText = -1;
 
     private float width = 200;
     private float height = 20;
@@ -49,6 +51,24 @@ public class UIShowStats : NetworkBehaviour
         CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
         canvasObject.AddComponent<GraphicRaycaster>();
+
+        if (GameManager.Instance.GetPlayers().Count == 1)
+        {
+            foreach (var text in lonelyTexts)
+            {
+                text.textUI.transform.SetParent(canvas.transform, false);
+            }
+            randomLonelyText = Random.Range(0, lonelyTexts.Length);
+            lonelyTexts[randomLonelyText].textUI.text = lonelyTexts[randomLonelyText].text;
+            lonelyTexts[randomLonelyText].textUI.gameObject.SetActive(true);
+        }
+        else
+        {
+            foreach (var text in lonelyTexts)
+            {
+                text.textUI.gameObject.SetActive(false);
+            }
+        }
 
         int offsetY = -90;
         if (SceneHandler.Instance.IsLocalGame)

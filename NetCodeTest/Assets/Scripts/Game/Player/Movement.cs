@@ -17,7 +17,7 @@ public class Movement : NetworkBehaviour
     private bool wasGrounded = true;
 
     private Transform cameraTransform = null;
-    private float mouseSensitivity = 100f;
+    //private float mouseSensitivity = 100f;
     public Vector3 cameraOffset = new Vector3(0, 3, -5);
     private float cameraPitch = 0f;
 
@@ -28,6 +28,12 @@ public class Movement : NetworkBehaviour
     Vector3 sphereOrigin;
     private Stats playerStats = null;
 
+    [SerializeField] private float mouseSensitivity = 10.0f;
+    [SerializeField] private float controllerSensitivity = 300.0f;
+    private float currentSensitivity;
+
+    private enum InputType { Mouse, Controller }
+    private InputType currentInputType = InputType.Mouse; // Default to mouse
 
     private CharacterController controller = null;
     [SerializeField] private InputActionAsset actionAsset = null;
@@ -40,7 +46,7 @@ public class Movement : NetworkBehaviour
 
     private InputHandler inputHandler = null;
 
-    //private bool isDead = false;
+    private bool isDead = false;
     private bool isGrounded = false;
     private void OnEnable()
     {
@@ -108,6 +114,9 @@ public class Movement : NetworkBehaviour
 
     public void ReStart()
     {
+        currentInputType = InputType.Mouse;
+        currentSensitivity = mouseSensitivity;
+
         controller = GetComponent<CharacterController>();
         cameraTransform = GetComponentInChildren<Camera>().transform;
         Camera camera = GetComponentInChildren<Camera>();
@@ -150,7 +159,8 @@ public class Movement : NetworkBehaviour
         if (hasInput && !isMoving)
         {
             isMoving = true;
-            PlayFootstepSound();
+            if (playerStats.IsWinner.Value)
+                PlayFootstepSound();
         }
         else if (!hasInput && isMoving)
         {
@@ -160,12 +170,17 @@ public class Movement : NetworkBehaviour
 
         if (hasInput && isMoving)
         {
-            UpdateFootstepSpeed();
+            if (playerStats.IsWinner.Value)
+                UpdateFootstepSpeed();
         }
 
         if (!hasInput)
         {
             return;
+        }
+        if (!playerStats.IsWinner.Value)
+        {
+            input = new Vector2 { x = 0, y = 0 };
         }
 
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
@@ -247,6 +262,8 @@ public class Movement : NetworkBehaviour
     private void HandleJumping()
     {
         if (isJumping) return;
+        if (!playerStats.IsWinner.Value) return;
+
 
         if (SceneHandler.Instance.IsLocalGame)
         {
@@ -273,10 +290,11 @@ public class Movement : NetworkBehaviour
             if (!IsOwner)
                 return;
 
-        Debug.Log("Pressed Jump!");
+        if (!playerStats.IsWinner.Value) return;
+
+
         if (isGrounded)
         {
-            Debug.Log("Is grounded");
             AudioManager.Instance.PlaySound(eSound.Jump);
             isJumping = false;
             HandleJumping();
@@ -298,7 +316,7 @@ public class Movement : NetworkBehaviour
         isGrounded = Physics.SphereCast(sphereOrigin, groundCheckRadius, Vector3.down,
                                            out hit, groundCheckDistance, groundLayer);
         if (isGrounded)
-            isJumping = false; 
+            isJumping = false;
         return isGrounded;
     }
 
@@ -306,20 +324,22 @@ public class Movement : NetworkBehaviour
     {
         if (!SceneHandler.Instance.IsLocalGame)
             if (!IsOwner) return;
-        if (!playerStats.IsWinner.Value) return;
 
 
-        if (playerStats.HP.Value <= 0)
+        if (playerStats.HP.Value <= 0 && !isDead)
         {
             playerStats.IsWinner.Value = false;
+            isDead = true;
             AudioManager.Instance.PlaySound(eSound.Death);
-            return;
+            //return;
         }
 
+        HandleController();
+
         isGrounded = IsGrounded();
-        Debug.Log("Is grounded = " + isGrounded);
-        Debug.Log("Is jumping = " + isJumping);
-        Debug.Log("Is dead = " + !playerStats.IsWinner.Value);
+        //Debug.Log("Is grounded = " + isGrounded);
+        //Debug.Log("Is jumping = " + isJumping);
+        //Debug.Log("Is dead = " + !playerStats.IsWinner.Value);
         HandlePlayerMovement();
         ApplyGravity();
         HandleJumping();
@@ -346,10 +366,10 @@ public class Movement : NetworkBehaviour
 
         if (mouseInput.sqrMagnitude > 0.1f)
         {
-            float yawRotation = mouseInput.x * mouseSensitivity * Time.deltaTime;
+            float yawRotation = mouseInput.x * currentSensitivity * Time.deltaTime;
             transform.Rotate(Vector3.up * yawRotation);
 
-            cameraPitch -= mouseInput.y * mouseSensitivity * Time.deltaTime;
+            cameraPitch -= mouseInput.y * currentSensitivity * Time.deltaTime;
             cameraPitch = Mathf.Clamp(cameraPitch, -100f, 40f);
         }
 
@@ -370,5 +390,43 @@ public class Movement : NetworkBehaviour
         cameraTransform.LookAt(transform.position + Vector3.up * 1.5f);
     }
 
+    private void HandleController()
+    {
+        bool isUsingController = Gamepad.current != null && (
+            Gamepad.current.leftStick.ReadValue().sqrMagnitude > 0.1f ||
+            Gamepad.current.rightStick.ReadValue().sqrMagnitude > 0.1f ||
+            Gamepad.current.buttonSouth.isPressed ||
+            Gamepad.current.buttonWest.isPressed ||
+            Gamepad.current.buttonNorth.isPressed ||
+            Gamepad.current.buttonEast.isPressed
+        );
 
+        bool isUsingMouse = Mouse.current != null && (
+            Mouse.current.delta.ReadValue().sqrMagnitude > 0.1f ||
+            Mouse.current.leftButton.isPressed ||
+            Mouse.current.rightButton.isPressed
+        );
+
+        if (isUsingMouse && currentInputType != InputType.Mouse)
+        {
+            currentInputType = InputType.Mouse;
+            currentSensitivity = mouseSensitivity;
+            Debug.Log("Switched to Mouse");
+        }
+        else if (isUsingController && currentInputType != InputType.Controller)
+        {
+            currentInputType = InputType.Controller;
+            currentSensitivity = controllerSensitivity;
+            Debug.Log("Switched to Controller");
+        }
+        else if (!isUsingMouse && !isUsingController) // If nothing is active, reset to last input type
+        {
+            if (currentInputType == InputType.Controller && Gamepad.current == null)
+            {
+                currentInputType = InputType.Mouse;
+                currentSensitivity = mouseSensitivity;
+                Debug.Log("No controller detected, switching back to Mouse");
+            }
+        }
+    }
 }

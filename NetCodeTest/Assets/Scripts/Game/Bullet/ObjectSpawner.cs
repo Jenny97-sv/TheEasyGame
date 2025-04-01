@@ -36,8 +36,8 @@ public class ObjectSpawner : NetworkBehaviour
             shoot = game.FindAction("Shoot");
             if (shoot != null)
             {
-                Debug.Log("Debugtest = " + debugTest);
-                debugTest++;
+                //Debug.Log("Debugtest = " + debugTest);
+                //debugTest++;
                 shoot.started -= OnShoot;
                 shoot.started += OnShoot;
             }
@@ -97,8 +97,8 @@ public class ObjectSpawner : NetworkBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        Debug.Log("Debugtest = " + debugTest);
-        debugTest++;
+        //Debug.Log("Debugtest = " + debugTest);
+        //debugTest++;
         if (!GetComponent<Stats>().IsWinner.Value)
             return;
         Vector3 shootPosition = new Vector3(

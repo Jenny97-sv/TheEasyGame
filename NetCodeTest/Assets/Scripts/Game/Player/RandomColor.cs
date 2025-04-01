@@ -6,11 +6,18 @@ public class RandomColor : NetworkBehaviour
     [SerializeField] private Material[] colors;
     private Renderer[] renderers;
 
-    private NetworkVariable<int> colorIndex = new NetworkVariable<int>(0); // Store color index
+    private NetworkVariable<int> colorIndex = new NetworkVariable<int>(0);
 
     private void Awake()
     {
         renderers = GetComponentsInChildren<Renderer>();
+        if (SceneHandler.Instance.IsLocalGame)
+        {
+            colorIndex.Value = Random.Range(0, colors.Length);
+            ApplyColor(colorIndex.Value); // ✅ Apply correct color when spawned
+            colorIndex.OnValueChanged -= (oldValue, newValue) => ApplyColor(newValue);
+            colorIndex.OnValueChanged += (oldValue, newValue) => ApplyColor(newValue);
+        }
     }
 
     public override void OnNetworkSpawn()
@@ -21,7 +28,13 @@ public class RandomColor : NetworkBehaviour
         }
 
         ApplyColor(colorIndex.Value); // ✅ Apply correct color when spawned
+        colorIndex.OnValueChanged -= (oldValue, newValue) => ApplyColor(newValue);
         colorIndex.OnValueChanged += (oldValue, newValue) => ApplyColor(newValue);
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        colorIndex.OnValueChanged -= (oldValue, newValue) => ApplyColor(newValue);
     }
 
     private void ApplyColor(int index)

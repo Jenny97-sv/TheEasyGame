@@ -36,6 +36,34 @@ public class Stats : NetworkBehaviour
             myIsPoweredUp = stats.myIsPoweredUp
         };
     }
+
+    private void Start()
+    {
+        if (IsServer || SceneHandler.Instance.IsLocalGame)
+        {
+            DefaultHP.Value = defaultHP;
+            DefaultMaxHP.Value = defaultMaxHP;
+            DefaultDamage.Value = defaultDamage;
+            DefaultMaxDamage.Value = defaultMaxDamage;
+            DefaultSpeed.Value = defaultSpeed;
+            DefaultMaxSpeed.Value = defaultMaxSpeed;
+
+            HP.Value = DefaultHP.Value;
+            MaxHP.Value = DefaultMaxHP.Value;
+            Damage.Value = DefaultDamage.Value;
+            MaxDamage.Value = DefaultMaxDamage.Value;
+            Speed.Value = DefaultSpeed.Value;
+            MaxSpeed.Value = DefaultMaxSpeed.Value;
+        }
+    }
+
+    [SerializeField] private int defaultHP = 10;
+    [SerializeField] private int defaultMaxHP = 10;
+    [SerializeField] private int defaultDamage = 2;
+    [SerializeField] private int defaultMaxDamage = 4;
+    [SerializeField] private float defaultSpeed = 5;
+    [SerializeField] private float defaultMaxSpeed = 10;
+
     [HideInInspector] public NetworkVariable<int> ID = new NetworkVariable<int>(0);
 
     [HideInInspector] public NetworkVariable<int> HP = new NetworkVariable<int>(10);
@@ -45,12 +73,12 @@ public class Stats : NetworkBehaviour
     [HideInInspector] public NetworkVariable<float> Speed = new NetworkVariable<float>(5);
     [HideInInspector] public NetworkVariable<float> MaxSpeed = new NetworkVariable<float>(10);
 
-    public NetworkVariable<int> DefaultHP = new NetworkVariable<int>(10);
-    public NetworkVariable<int> DefaultMaxHP = new NetworkVariable<int>(10);
-    public NetworkVariable<int> DefaultDamage = new NetworkVariable<int>(2);
-    public NetworkVariable<int> DefaultMaxDamage = new NetworkVariable<int>(4);
-    public NetworkVariable<float> DefaultSpeed = new NetworkVariable<float>(5);
-    public NetworkVariable<float> DefaultMaxSpeed = new NetworkVariable<float>(10);
+    [HideInInspector] public NetworkVariable<int> DefaultHP = new NetworkVariable<int>(10);
+    [HideInInspector] public NetworkVariable<int> DefaultMaxHP = new NetworkVariable<int>(10);
+    [HideInInspector] public NetworkVariable<int> DefaultDamage = new NetworkVariable<int>(2);
+    [HideInInspector] public NetworkVariable<int> DefaultMaxDamage = new NetworkVariable<int>(4);
+    [HideInInspector] public NetworkVariable<float> DefaultSpeed = new NetworkVariable<float>(5);
+    [HideInInspector] public NetworkVariable<float> DefaultMaxSpeed = new NetworkVariable<float>(10);
 
     [HideInInspector] public NetworkVariable<bool> IsWinner = new NetworkVariable<bool>(true);
     [HideInInspector] public NetworkVariable<bool> IsReady = new NetworkVariable<bool>(false);

@@ -24,8 +24,9 @@ public class Log : MonoBehaviour
     void HandleLog(string logString, string stackTrace, LogType type)
     {
         myLogQueue.Enqueue("[" + type + "] : " + logString);
-        if (type == LogType.Exception && type != LogType.Warning)
-            myLogQueue.Enqueue(stackTrace);
+        if (type == LogType.Warning || type == LogType.Error)
+            return;
+        myLogQueue.Enqueue(stackTrace);
         while (myLogQueue.Count > qsize)
             myLogQueue.Dequeue();
     }

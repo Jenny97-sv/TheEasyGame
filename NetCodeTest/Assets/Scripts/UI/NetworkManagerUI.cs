@@ -77,6 +77,13 @@ public class NetworkManagerUI : MonoBehaviour
             }
         }
 
+#if !UNITY_EDITOR
+        Cursor.visible = true;
+        Screen.lockCursor = false;
+#endif
+
+        if (AudioManager.Instance.GetPitch(eMusic.Music) != 1)
+            AudioManager.Instance.SetPitch(eMusic.Music, 1);
         AudioManager.Instance.PlayMusic(eMusic.Music);
         AudioManager.Instance.SetParameter(eMusic.Music, 0);
         AudioManager.Instance.SetPlayerSFXVolume(0);
@@ -102,6 +109,7 @@ public class NetworkManagerUI : MonoBehaviour
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         SFXSlider.onValueChanged.AddListener(SetSFXVolume);
 
+        NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
 
         EventSystem.current.SetSelectedGameObject(onlineButton.gameObject);

@@ -37,8 +37,13 @@ public class UIEndScreen : MonoBehaviour
 
     void Start()
     {
+#if !UNITY_EDITOR
+        Cursor.visible = true;
+        Screen.lockCursor = false;
+#endif
         switchedMenu = true;
-        AudioManager.Instance.SetPitch(eMusic.Music, 1);
+        if(AudioManager.Instance.GetPitch(eMusic.Music) != 1)
+            AudioManager.Instance.SetPitch(eMusic.Music, 1);
         //AudioManager.Instance.PlayMusic(eMusic.Music);
 
         AudioManager.Instance.SetPlayerSFXVolume(0);
