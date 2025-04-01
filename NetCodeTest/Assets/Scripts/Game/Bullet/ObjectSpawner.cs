@@ -12,6 +12,8 @@ public class ObjectSpawner : NetworkBehaviour
     private const int maxForwardSpawns = 1;
     private const int maxBulletSpawns = 3;
 
+    private int debugTest = 0;
+
     [SerializeField] private InputActionAsset actionAsset = null;
     private InputActionMap game = null;
     private InputAction shoot = null;
@@ -27,14 +29,18 @@ public class ObjectSpawner : NetworkBehaviour
 
     private void OnEnable()
     {
-
         if (SceneHandler.Instance.IsLocalGame)
         {
             actionAsset = GetComponent<PlayerInput>().actions;
             game = actionAsset.FindActionMap("Game");
             shoot = game.FindAction("Shoot");
-            shoot.started -= OnShoot;
-            shoot.started += OnShoot;
+            if (shoot != null)
+            {
+                Debug.Log("Debugtest = " + debugTest);
+                debugTest++;
+                shoot.started -= OnShoot;
+                shoot.started += OnShoot;
+            }
         }
         else
         {
@@ -49,18 +55,19 @@ public class ObjectSpawner : NetworkBehaviour
     private void OnDisable()
     {
         ReturnObjectsToPool();
-        if (SceneHandler.Instance.sceneName.Value == SceneName.Scene1) // Shitty, but that's what I got
+        //if (SceneHandler.Instance.sceneName.Value == SceneName.Scene1) // Shitty, but that's what I got
+        //{
+        if (SceneHandler.Instance.IsLocalGame)
         {
-            if (SceneHandler.Instance.IsLocalGame)
-            {
+            if(shoot != null)
                 shoot.started -= OnShoot;
-            }
-            else
-            {
-                if (IsOwner)
-                    InputHandler.Instance.shootAction.started -= OnShoot;
-            }
         }
+        else
+        {
+            if (IsOwner)
+                InputHandler.Instance.shootAction.started -= OnShoot;
+        }
+        //}
 
     }
 
@@ -88,8 +95,12 @@ public class ObjectSpawner : NetworkBehaviour
         }
     }
 
-    private void OnShoot(InputAction.CallbackContext context)
+    public void OnShoot(InputAction.CallbackContext context)
     {
+        Debug.Log("Debugtest = " + debugTest);
+        debugTest++;
+        if (!GetComponent<Stats>().IsWinner.Value)
+            return;
         Vector3 shootPosition = new Vector3(
             transform.position.x + GetLocalCamera().transform.forward.x * 2,
             transform.position.y + GetLocalCamera().transform.forward.y * 2 + 1,

@@ -37,8 +37,9 @@ public class UIEndScreen : MonoBehaviour
 
     void Start()
     {
+        switchedMenu = true;
         AudioManager.Instance.SetPitch(eMusic.Music, 1);
-        AudioManager.Instance.PlayMusic(eMusic.Music);
+        //AudioManager.Instance.PlayMusic(eMusic.Music);
 
         AudioManager.Instance.SetPlayerSFXVolume(0);
 
@@ -46,7 +47,8 @@ public class UIEndScreen : MonoBehaviour
         {
             playerInput = GetComponent<PlayerInput>();
             playerInput.SwitchCurrentActionMap("UI");
-
+            AudioManager.Instance.SetParameter(eMusic.Music, 2);
+            AudioManager.Instance.PlayMusic(eMusic.Music);
 
             int winnerID = -1;
 
@@ -85,6 +87,7 @@ public class UIEndScreen : MonoBehaviour
         if (playerStats.IsWinner.Value)
         {
             AudioManager.Instance.SetParameter(eMusic.Music, 2);
+            AudioManager.Instance.PlayMusic(eMusic.Music);
             currentWinText = Random.Range(0, winTexts.Length);
 
             winTexts[currentWinText].textUI.gameObject.SetActive(true);
@@ -157,11 +160,11 @@ public class UIEndScreen : MonoBehaviour
 
     private void Update()
     {
-        if (EventSystem.current != null)
+        if (EventSystem.current)
         {
             GameObject selected = EventSystem.current.currentSelectedGameObject;
 
-            if (selected != null && selected != current) // Only play if selection changes
+            if (selected && selected != current) // Only play if selection changes
             {
                 if (!switchedMenu)
                     AudioManager.Instance.PlaySound(eSound.Hover);

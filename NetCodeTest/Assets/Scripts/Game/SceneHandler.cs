@@ -119,8 +119,13 @@ public class SceneHandler : NetworkBehaviour
             }
             else
             {
+                //GameObject playerInput = PlayerInputManager.instance.JoinPlayer().gameObject;
+                //playerInput.transform.SetPositionAndRotation(startPos.position, startPos.rotation);
+
                 playerObject = Instantiate(playerPrefab, startPos.position, startPos.rotation);
+
                 GameManager.Instance.SetPlayers(playerObject, i, MaxPlayerCount);
+
                 PlayerInputManager.instance.DisableJoining();
             }
 

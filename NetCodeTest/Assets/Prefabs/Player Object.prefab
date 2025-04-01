@@ -699,8 +699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65dd2c83ed6c5cd49ad41ad8d05592ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overPrefab: {fileID: 541251949229630094, guid: f838856442f8a9f448e3c158f25d7071, type: 3}
-  forwardPrefab: {fileID: 309949081062776130, guid: 03b825c129235b14884683c5dbdeef62, type: 3}
   bulletPrefab: {fileID: 2396282131069871736, guid: 100163bb74d355f499c4208a939973f7, type: 3}
   actionAsset: {fileID: -944628639613478452, guid: 1b88330384e61904c80a1be65a3ef457, type: 3}
 --- !u!114 &4123703067646915553
@@ -715,7 +713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb258ea37fc45c4b8f587e0f6c08004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   acceleration: 0.5
   cameraOffset: {x: 0, y: 3, z: -5}
   groundLayer:
@@ -786,6 +783,10 @@ MonoBehaviour:
     m_InternalValue: 2
   MaxDamage:
     m_InternalValue: 4
+  Speed:
+    m_InternalValue: 5
+  MaxSpeed:
+    m_InternalValue: 10
   DefaultHP:
     m_InternalValue: 10
   DefaultMaxHP:
@@ -794,6 +795,10 @@ MonoBehaviour:
     m_InternalValue: 2
   DefaultMaxDamage:
     m_InternalValue: 4
+  DefaultSpeed:
+    m_InternalValue: 5
+  DefaultMaxSpeed:
+    m_InternalValue: 10
   IsWinner:
     m_InternalValue: 1
   IsReady:
@@ -864,7 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 1b88330384e61904c80a1be65a3ef457, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -875,7 +880,67 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f39429c3-c46a-4eb3-abca-be936334f8b6
+    m_ActionName: Game/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b27406d2-284e-4884-8ce7-e114976de524
+    m_ActionName: Game/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe301c8d-a532-4dd9-876a-f78bd872f074
+    m_ActionName: Game/Shoot[/XInputControllerWindows/rightShoulder,/Mouse/press]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0995ea8a-728d-4f75-bcd8-19ad36a3afa8
+    m_ActionName: Game/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 652b861b-13ec-4178-b1af-65994b1b57d7
+    m_ActionName: Game/Save[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c38589fa-ba32-4384-80db-8533ddca9931
+    m_ActionName: Game/Load[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f02050b5-d15b-4f63-bfcc-92a8a39efd36
+    m_ActionName: Game/SpawnOver[/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 20626c48-8ebe-4fdc-9083-b58cc93932cd
+    m_ActionName: Game/SpawnForward[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4747c20c-25cd-4731-8f87-89ce409808d8
+    m_ActionName: Game/SwitchScene[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01ec84cf-c649-45f9-904e-49069978b1ff
+    m_ActionName: Game/Reload[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc52c24e-2b2b-40a7-9fc7-f77a41a8999d
+    m_ActionName: Game/Shift[/Keyboard/shift,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09f255b2-a64d-4c48-bb9d-9abbef47fb62
+    m_ActionName: Game/A Button[/XInputControllerWindows/buttonEast,/Mouse/leftButton,/Keyboard/anyKey,/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ce6b217a-334b-4924-929f-5c82d4a338da
+    m_ActionName: UI/Press[/Mouse/leftButton,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e67d6a24-d110-4cb2-a238-0cb817a905fa
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fd9f28c1-a4d1-4e0f-9864-df5a5d724037
+    m_ActionName: UI/Back[/XInputControllerWindows/buttonEast,/Keyboard/escape,/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game

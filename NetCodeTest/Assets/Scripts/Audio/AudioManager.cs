@@ -88,7 +88,7 @@ public class AudioManager : MonoBehaviour
             allVCA = RuntimeManager.GetVCA("vca:/All");
             playerSFXVCA = RuntimeManager.GetVCA("vca:/PlayerSFX");
 
-            SetVolume(0.05f);
+            SetVolume(0.2f);
         }
         else
         {
@@ -123,14 +123,18 @@ public class AudioManager : MonoBehaviour
 
     //private void Update()
     //{
-    //    float vol;
-    //    playerSFXVCA.getVolume(out vol);
-    //    Debug.Log("PlayerSFX volume = " + vol);
+    //    //float vol;
+    //    //playerSFXVCA.getVolume(out vol);
+    //    //Debug.Log("PlayerSFX volume = " + vol);
     //    //Debug.Log("Jump playbackstate = " + GetPlayBackState(eSound.Jump));
+
+    //    //Debug.Log("Current music = " + AudioManager.Instance.GetCurrentMusic().ToString());
+
     //}
 
     public void PlayMusic(eMusic music)
     {
+        Debug.Log("Playing music " + music.ToString());
         if (musicLookup.TryGetValue(music, out EventInstance instance))
         {
             currentMusicInstance = instance;

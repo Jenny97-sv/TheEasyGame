@@ -79,6 +79,8 @@ public class NetworkManagerUI : MonoBehaviour
 
         AudioManager.Instance.PlayMusic(eMusic.Music);
         AudioManager.Instance.SetParameter(eMusic.Music, 0);
+        AudioManager.Instance.SetPlayerSFXVolume(0);
+        PlayerInputManager.instance.DisableJoining();
 
         hostButton.onClick.AddListener(OnHostButtonPressed);
         joinButton.onClick.AddListener(OnJoinButtonPressed);

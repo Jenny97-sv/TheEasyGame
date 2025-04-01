@@ -24,7 +24,7 @@ public class InputHandler : MonoBehaviour
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
-    public InputAction shootAction;
+    public InputAction shootAction; // Ugly, but how else?
     private InputAction shiftAction;
 
     public Vector2 MoveInput { get; private set; }
@@ -33,7 +33,6 @@ public class InputHandler : MonoBehaviour
     public bool ShootTriggered { get; private set; }
     public bool ShiftTriggered { get; private set; }
 
-    //public event Action OnShootPressed;
     private void Awake()
     {
         if (!Instance)
@@ -61,6 +60,11 @@ public class InputHandler : MonoBehaviour
         lookAction.Enable();
         jumpAction.Enable();
         shootAction.Enable();
+        jumpAction.performed += context => JumpTriggered = true;
+        jumpAction.canceled += context => JumpTriggered = false;
+
+        shootAction.performed += context => ShootTriggered = true;
+        shootAction.canceled += context => ShootTriggered = false;
         shiftAction.Enable();
     }
 
@@ -68,19 +72,15 @@ public class InputHandler : MonoBehaviour
     {
         moveAction.Disable();
         lookAction.Disable();
+        jumpAction.performed -= context => JumpTriggered = true;
+        jumpAction.canceled -= context => JumpTriggered = false;
+
+        shootAction.performed -= context => ShootTriggered = true;
+        shootAction.canceled -= context => ShootTriggered = false;
         jumpAction.Disable();
         shootAction.Disable();
         shiftAction.Disable();
     }
-    //void Update()
-    //{
-    //    if (shootAction.WasPressedThisFrame())
-    //    {
-    //        OnShootPressed?.Invoke();
-    //        Debug.Log("Shoot Triggered!");
-    //    }
-    //}
-
     void RegisterInputActions()
     {
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();

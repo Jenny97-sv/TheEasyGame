@@ -14,8 +14,7 @@ public class Movement : NetworkBehaviour
     private bool isJumping = false;
     private bool isMoving = false;
 
-    private bool wasGrounded = true; // Start assuming the player is on the ground
-    private bool justLanded = false; // True only for the first frame after landing
+    private bool wasGrounded = true;
 
     private Transform cameraTransform = null;
     private float mouseSensitivity = 100f;
@@ -41,7 +40,7 @@ public class Movement : NetworkBehaviour
 
     private InputHandler inputHandler = null;
 
-    private bool isDead = false;
+    //private bool isDead = false;
     private bool isGrounded = false;
     private void OnEnable()
     {
@@ -53,7 +52,11 @@ public class Movement : NetworkBehaviour
                 game = actionAsset.FindActionMap("Game");
 
                 jump = game.FindAction("Jump");
-                jump.performed += OnJump;
+                jump.Enable();
+                if (jump != null)
+                {
+                    jump.performed += OnJump;
+                }
 
                 shift = game.FindAction("Shift");
                 move = game.FindAction("Move");
@@ -68,6 +71,7 @@ public class Movement : NetworkBehaviour
 
     private void OnDisable()
     {
+        jump.Disable();
         jump.performed -= OnJump;
     }
     void Start()
@@ -217,7 +221,7 @@ public class Movement : NetworkBehaviour
 
     private void ApplyGravity()
     {
-        isGrounded = IsGrounded(); // Check if the player is on the ground
+        isGrounded = IsGrounded();
 
         if (!isGrounded)
         {
@@ -225,22 +229,15 @@ public class Movement : NetworkBehaviour
         }
         else if (velocity.y < 0f)
         {
-            velocity.y = -0.5f; // Small downward force to stick to ground
+            velocity.y = -0.5f;
         }
 
-        // Detect landing
         if (isGrounded && !wasGrounded && isMoving)
         {
-            justLanded = true; // Player landed this frame
             AudioManager.Instance.PlaySound(eSound.WalkSpeed);
         }
-        else
-        {
-            //AudioManager.Instance.StopSound(eSound.WalkSpeed);
-            justLanded = false;
-        }
 
-        wasGrounded = isGrounded; // Update last frame’s ground state
+        wasGrounded = isGrounded;
 
         controller.Move(velocity * Time.deltaTime);
     }
@@ -270,14 +267,16 @@ public class Movement : NetworkBehaviour
         }
     }
 
-    private void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         if (!SceneHandler.Instance.IsLocalGame)
             if (!IsOwner)
                 return;
 
+        Debug.Log("Pressed Jump!");
         if (isGrounded)
         {
+            Debug.Log("Is grounded");
             AudioManager.Instance.PlaySound(eSound.Jump);
             isJumping = false;
             HandleJumping();
@@ -286,14 +285,20 @@ public class Movement : NetworkBehaviour
 
     private bool IsGrounded()
     {
-        if (controller.isGrounded) return true;
+        if (controller.isGrounded)
+        {
+            isJumping = false;
+            return true;
+        }
 
         float groundCheckRadius = 0.1f;
-        float groundCheckDistance = 1.1f;
+        float groundCheckDistance = 1.09f;
         sphereOrigin = transform.position + Vector3.up * 0.11f; // why I do this? It works though
 
         isGrounded = Physics.SphereCast(sphereOrigin, groundCheckRadius, Vector3.down,
                                            out hit, groundCheckDistance, groundLayer);
+        if (isGrounded)
+            isJumping = false; 
         return isGrounded;
     }
 
@@ -301,17 +306,20 @@ public class Movement : NetworkBehaviour
     {
         if (!SceneHandler.Instance.IsLocalGame)
             if (!IsOwner) return;
-        if (isDead) return;
+        if (!playerStats.IsWinner.Value) return;
 
 
         if (playerStats.HP.Value <= 0)
         {
-            isDead = true;
+            playerStats.IsWinner.Value = false;
             AudioManager.Instance.PlaySound(eSound.Death);
             return;
         }
 
         isGrounded = IsGrounded();
+        Debug.Log("Is grounded = " + isGrounded);
+        Debug.Log("Is jumping = " + isJumping);
+        Debug.Log("Is dead = " + !playerStats.IsWinner.Value);
         HandlePlayerMovement();
         ApplyGravity();
         HandleJumping();
