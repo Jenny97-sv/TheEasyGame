@@ -12,10 +12,11 @@ using UnityEngine.InputSystem;
 
 
 [System.Serializable]
-public struct EndScreenText
+public struct SerializeText
 {
     public string text;
     public TextMeshProUGUI textUI;
+    public TextMeshPro text3D;
 }
 
 
@@ -24,8 +25,8 @@ public class UIEndScreen : MonoBehaviour
     [SerializeField] private Button quitButton = null;
     [SerializeField] private Button continueButton = null;
     [SerializeField] private TextMeshProUGUI waitingForOthersText = null;
-    [SerializeField] private EndScreenText[] loseTexts = null;
-    [SerializeField] private EndScreenText[] winTexts = null;
+    [SerializeField] private SerializeText[] loseTexts = null;
+    [SerializeField] private SerializeText[] winTexts = null;
     private PlayerInput playerInput = null;
     private GameObject current = null;
     private bool switchedMenu = false;

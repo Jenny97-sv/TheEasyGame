@@ -29,6 +29,7 @@ public enum MenuState
 
 public class NetworkManagerUI : MonoBehaviour
 {
+    [Header("Buttons")]
     [SerializeField] private Button hostButton = null;
     [SerializeField] private Button joinButton = null;
 
@@ -47,9 +48,17 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private GameObject[] playerCountButtons = null;
     [SerializeField] private GameObject backGround = null;
 
+    [Header("Sliders")]
     [SerializeField] private Slider allSlider = null;
     [SerializeField] private Slider musicSlider = null;
     [SerializeField] private Slider SFXSlider = null;
+
+    [Header("JoinCodeStuff!")]
+    [SerializeField] private TextMeshProUGUI joinText = null;
+    [SerializeField] private TextMeshProUGUI joinCode = null;
+    //[SerializeField] private TextMeshProUGUI nameText = null;
+    //[SerializeField] private TMP_InputField nameInput = null;
+    [SerializeField] private TMP_InputField joinInput = null;
 
     [HideInInspector] public int PlayerCount = 0;
 
@@ -249,18 +258,41 @@ public class NetworkManagerUI : MonoBehaviour
     private void OnHostButtonPressed()
     {
         AudioManager.Instance.PlaySound(eSound.Click);
+        joinText.gameObject.SetActive(true);
+        joinCode.gameObject.SetActive(true);
+        //nameText.gameObject.SetActive(true);
+        //nameInput.gameObject.SetActive(true);
+
+        hostButton.gameObject.SetActive(false);
+        joinButton.gameObject.SetActive(false);
+
+        Relay.Instance.CreateRelay();
 
         SetMenuState(MenuState.PlayerSelection);
     }
     private void OnJoinButtonPressed()
     {
         AudioManager.Instance.PlaySound(eSound.Click);
+        joinInput.gameObject.SetActive(true);
+        joinText.gameObject.SetActive(true);
+        //nameText.gameObject.SetActive(true);
+        //nameInput.gameObject.SetActive(true);
+
+        joinButton.gameObject.SetActive(false);
+        hostButton.gameObject.SetActive(false);
+
+        //NetworkManager.Singleton.StartClient();
     }
 
 
     private void OnBackButtonPressed()
     {
         AudioManager.Instance.PlaySound(eSound.Click);
+        joinText.gameObject.SetActive(false);
+        joinCode.gameObject.SetActive(false); 
+        //nameText.gameObject.SetActive(false);
+        //nameInput.gameObject.SetActive(false);
+        joinInput.gameObject.SetActive(false);
         if (menuHistory.Count > 0)
         {
             if (currentMenu == MenuState.OnlineMenu) // Hardcoded, but only thing I found that worked....
@@ -290,6 +322,7 @@ public class NetworkManagerUI : MonoBehaviour
     private void OnOnlineButtonPressed()
     {
         AudioManager.Instance.PlaySound(eSound.Click);
+        Relay.Instance.InitalizeRelay();
 
         SceneHandler.Instance.IsLocalGame = false;
         SetMenuState(MenuState.OnlineMenu);

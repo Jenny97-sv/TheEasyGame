@@ -49,7 +49,6 @@ public class StartPosition : MonoBehaviour
         {
             if (position.startPosition != null && (ulong)position.player == clientId)
             {
-                Debug.Log("Correct pos for " +  position.player + " at pos " + position.startPosition.transform.position);
                 return position.startPosition.transform;
             }
         }

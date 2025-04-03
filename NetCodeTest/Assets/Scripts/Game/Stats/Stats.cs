@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -89,17 +90,27 @@ public class Stats : NetworkBehaviour
     [HideInInspector] private NetworkVariable<float> myMaxPowerUpTimer = new NetworkVariable<float>(6);
     [HideInInspector] public NetworkVariable<bool> myIsPoweredUp = new NetworkVariable<bool>(false);
 
+    [HideInInspector] public NetworkVariable<bool> myTookDamage = new NetworkVariable<bool>(false);
+
+    [HideInInspector]
+    public NetworkVariable<FixedString128Bytes> myName = new NetworkVariable<FixedString128Bytes>("Oh boy...",
+    NetworkVariableReadPermission.Everyone,
+    NetworkVariableWritePermission.Owner);
+    //[HideInInspector] public string myName = "Oh boy...";
+
     public void TakeDamage(int damage)
     {
         if (!SceneHandler.Instance.IsLocalGame && IsServer || SceneHandler.Instance.IsLocalGame)
         {
             HP.Value -= damage;
+            
             if (HP.Value < 0)
             {
                 HP.Value = 0;
             }
             else
             {
+                myTookDamage.Value = true;
                 if (SceneHandler.Instance.IsLocalGame)
                     AudioManager.Instance.PlaySound(eSound.TakingDamage);
                 else

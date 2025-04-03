@@ -14,8 +14,8 @@ public class UIShowStats : NetworkBehaviour
     private Image playerHPBackground = null;
     private List<(Stats, TextMeshProUGUI)> opponentStatsUI = new List<(Stats, TextMeshProUGUI)>();
     private List<(Stats, Image, Image)> opponentImageUI = new List<(Stats, Image, Image)>();
-    [SerializeField] private EndScreenText[] deadTexts = null;
-    [SerializeField] private EndScreenText[] lonelyTexts = null;
+    [SerializeField] private SerializeText[] deadTexts = null;
+    [SerializeField] private SerializeText[] lonelyTexts = null;
     private int randomDeadText = -1;
     private int randomLonelyText = -1;
 
@@ -52,7 +52,7 @@ public class UIShowStats : NetworkBehaviour
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
         canvasObject.AddComponent<GraphicRaycaster>();
 
-        if (GameManager.Instance.GetPlayers().Count == 1)
+        if (GameManager.Instance.GetPlayers().Count == 1 && SceneHandler.Instance.MaxPlayerCount == 1)
         {
             foreach (var text in lonelyTexts)
             {

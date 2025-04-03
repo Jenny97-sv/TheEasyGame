@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
-
 public class HealthColor : NetworkBehaviour
 {
+    [Header("Health Color")]
     [SerializeField] private Image healthOverlay;
-    private Stats playerStats;
     [SerializeField] private float maxAlpha = 0.3f;
-    private NetworkObject netObj;
+    [SerializeField] private Color healthColor = new Color(0.5f, 0.5f, 0.9f);
 
+    [Header("Damage Flash")]
+    [SerializeField] private Color damageFlashColor = new Color(1f, 0f, 0f, 0.5f);
+    [SerializeField] private float damageFlashDuration = 0.1f;
+    private float damageFlashTimer = 0f;
+
+    [SerializeField] private GameObject[] childrenToRender;
+
+    private Renderer render;
+    private NetworkVariable<Color> startColor = new NetworkVariable<Color>();
+    private NetworkVariable<Color> damageFlashColorNet = new NetworkVariable<Color>();
+    private Stats stats;
     private Camera playerCamera;
     private Rect cameraRect;
     private RectTransform healthOverlayRect;
@@ -20,9 +30,19 @@ public class HealthColor : NetworkBehaviour
 
     private void Start()
     {
-        playerStats = GetComponent<Stats>();
-        netObj = GetComponent<NetworkObject>();
+        stats = GetComponent<Stats>();
         playerCamera = GetComponentInChildren<Camera>();
+        render = GetComponent<Renderer>();
+        if(IsServer && !SceneHandler.Instance.IsLocalGame)
+        {
+            startColor.Value = render.material.color;
+            damageFlashColorNet.Value = damageFlashColor;
+        }
+        else if (SceneHandler.Instance.IsLocalGame) 
+        {
+            startColor.Value = render.material.color;
+            damageFlashColorNet.Value = damageFlashColor;
+        }
 
         if (playerCamera != null)
         {
@@ -35,7 +55,7 @@ public class HealthColor : NetworkBehaviour
         }
         else
         {
-            shouldManageOverlay = netObj.IsOwner;
+            shouldManageOverlay = IsOwner;
         }
 
         if (!shouldManageOverlay)
@@ -58,56 +78,110 @@ public class HealthColor : NetworkBehaviour
     {
         if (!shouldManageOverlay || healthOverlay == null) return;
 
-        float healthPercent = playerStats.HP.Value / (float)playerStats.MaxHP.Value;
+        float healthPercent = stats.HP.Value / (float)stats.MaxHP.Value;
         float alpha = Mathf.Clamp01(1 - healthPercent) * maxAlpha;
-        healthOverlay.color = new Color(1, 0, 0, alpha);
+        healthOverlay.color = new Color(healthColor.r, healthColor.g, healthColor.b, alpha);
 
-        if (!isDead && playerStats.HP.Value <= 0)
+        if (!isDead && stats.HP.Value <= 0)
         {
             isDead = true;
             if (SceneHandler.Instance.IsLocalGame)
             {
                 SetDeadColor();
             }
-            else if (netObj.IsOwner) // Only the owner should trigger this
+            else if (IsOwner) // Only the owner should trigger this
             {
                 Debug.Log("Sending serverRPC!");
                 SetDeadColorServerRPC();
+            }
+        }
+
+        if (stats.myTookDamage.Value)
+        {
+            damageFlashTimer += Time.deltaTime;
+            healthOverlay.color = damageFlashColorNet.Value;
+            SetFlashColor();
+            if (damageFlashTimer >= damageFlashDuration)
+            {
+                stats.myTookDamage.Value = false;
+                damageFlashTimer = 0;
+                ResetFlashColor();
+            }
+            if(!SceneHandler.Instance.IsLocalGame)
+                SetFlashColorServerRPC();
+        }
+    }
+
+    private void SetFlashColor()
+    {
+        render.material.color = damageFlashColorNet.Value;
+        foreach (var renderer in childrenToRender)
+        {
+            renderer.GetComponent<Renderer>().material.color = damageFlashColor;
+        }
+    }
+    private void ResetFlashColor()
+    {
+        render.material.color = startColor.Value;
+        foreach (var renderer in childrenToRender)
+        {
+            renderer.GetComponent<Renderer>().material.color = startColor.Value;
+        }
+    }
+
+    [ServerRpc]
+    private void SetFlashColorServerRPC()
+    {
+        if (stats.myTookDamage.Value)
+        {
+            SetFlashColor();
+        }
+        else
+        {
+            Debug.Log("EY!");
+            ResetFlashColor();
+        }
+        SetFlashColorClientRPC();
+    }
+
+    [ClientRpc]
+    private void SetFlashColorClientRPC()
+    {
+        if (!IsOwner)
+        {
+            if (!stats.myTookDamage.Value)
+                SetFlashColor();
+            else
+            {
+                Debug.Log("EY!");
+                ResetFlashColor();
             }
         }
     }
 
     private void SetDeadColor()
     {
-        GetComponent<Renderer>().material.color = new Color(0.1f, 0, 0.1f, 1);
-        foreach (var renderer in GetComponentsInChildren<Renderer>())
+        render.material.color = new Color(healthColor.r, healthColor.g, healthColor.b, 1);
+        foreach (var renderer in childrenToRender)
         {
-            renderer.material.color = new Color(0.1f, 0, 0.1f, 1);
+            renderer.GetComponent<Renderer>().material.color = new Color(healthColor.r, healthColor.g, healthColor.b, 1);
         }
     }
 
     [ServerRpc]
     private void SetDeadColorServerRPC()
     {
-        // Apply color change on server
         SetDeadColor();
 
-        // Synchronize to all clients
         SetDeadColorClientRPC();
-
-        Debug.Log("Applied colors on server!");
     }
 
     [ClientRpc]
     private void SetDeadColorClientRPC()
     {
-        // Skip if we're the owner (already handled)
-        if (netObj.IsOwner) return;
+        if (IsOwner) return;
 
-        // Apply color change on all clients
         SetDeadColor();
-
-        Debug.Log("Applied colors on client!");
     }
 
     void AdjustBackgroundPosition()
@@ -122,7 +196,7 @@ public class HealthColor : NetworkBehaviour
         }
 
         int playerCount = SceneHandler.Instance.MaxPlayerCount;
-        int playerIndex = playerStats.ID.Value;
+        int playerIndex = stats.ID.Value;
 
         switch (playerCount)
         {

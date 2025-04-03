@@ -13,6 +13,7 @@ public class SaveLoadManager : NetworkBehaviour
     public static SaveLoadManager Instance = null;
     private GameData gameData;
     private string path = "";
+    //public List<string> playerNames = new List<string>();
 
     [System.Serializable]
     public struct GameData
@@ -195,7 +196,6 @@ public class SaveLoadManager : NetworkBehaviour
             Debug.LogWarning("No save file found!");
         }
     }
-
 
     private void OnApplicationQuit()
     {

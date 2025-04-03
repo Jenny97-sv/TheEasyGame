@@ -12,7 +12,7 @@ public class ObjectSpawner : NetworkBehaviour
     private const int maxForwardSpawns = 1;
     private const int maxBulletSpawns = 3;
 
-    private int debugTest = 0;
+    //private int debugTest = 0;
 
     [SerializeField] private InputActionAsset actionAsset = null;
     private InputActionMap game = null;

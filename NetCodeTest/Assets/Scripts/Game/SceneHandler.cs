@@ -63,7 +63,6 @@ public class SceneHandler : NetworkBehaviour
 
     private IEnumerator WaitForNetwork()
     {
-        Debug.Log("Waiting for network scene to load");
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == sceneName.Value.ToString());
 
         if (sceneName.Value == SceneName.Scene1)
@@ -80,13 +79,11 @@ public class SceneHandler : NetworkBehaviour
 
         StartPosition startPosition = FindObjectOfType<StartPosition>();
         startPosition.CurrentWorld = UnityEngine.Random.Range(0, 2);
-        Debug.Log("World = " + startPosition.CurrentWorld);
 
         if (sceneName.Value == SceneName.Scene1)
         {
             foreach (var id in NetworkManager.Singleton.ConnectedClientsIds)
             {
-                Debug.Log("Spawn player " + id);
                 SpawnPlayer(startPosition, id);
             }
         }
@@ -152,7 +149,6 @@ public class SceneHandler : NetworkBehaviour
 
         if (targetScene == SceneName.Scene1 || targetScene == SceneName.Menu)
         {
-            Debug.Log("Cleaning up!");
             CleanupExistingPlayers();
         }
 
@@ -203,6 +199,8 @@ public class SceneHandler : NetworkBehaviour
             playerObject.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
             playerObject.transform.position = startPoss.position;
             playerObject.GetComponent<Stats>().IsWinner.Value = true;
+            //playerObject.GetComponent<Stats>().myName.Value = SaveLoadManager.Instance.playerNames[(int)clientId];
+            //SetNameClientRPC(playerObject.GetComponent<Stats>().myName.Value.ToString());
             GameManager.Instance.SetPlayers(playerObject, (int)clientId, MaxPlayerCount);
         }
         else
@@ -210,6 +208,15 @@ public class SceneHandler : NetworkBehaviour
             Debug.Log("Something went wrong, player don't exist");
         }
     }
+
+    //[ClientRpc]
+    //private void SetNameClientRPC(string name)
+    //{
+    //    if(IsOwner)
+    //    {
+    //        GetComponent<Stats>().myName.Value = name;
+    //    }
+    //}
 
     private Transform StartPosition(StartPosition startPos, ulong clientId)
     {

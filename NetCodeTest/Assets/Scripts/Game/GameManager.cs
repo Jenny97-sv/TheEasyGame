@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GameManager : NetworkBehaviour
 {
@@ -22,6 +23,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject pickupHealthPrefab;
     [SerializeField] private GameObject pickupDamageBuffPrefab;
     [SerializeField] private GameObject pickupSpeedPrefab;
+
+    [SerializeField] private TMP_InputField nameField;
 
     [HideInInspector] private List<Collider> bounds = new List<Collider>();
 
@@ -43,6 +46,26 @@ public class GameManager : NetworkBehaviour
     [HideInInspector] public bool IsSlowedDown = false;
 
     public int CurrentWorld = 0;
+
+    public void SetPlayerName(string playerName, int playerIndex)
+    {
+        SetNameServerRPC(playerName, playerIndex);
+        Debug.LogError($"Player with index {playerIndex} not found!");
+    }
+
+    [ServerRpc]
+    private void SetNameServerRPC(string name, int index)
+    {
+        foreach (var player in players) // Loop through dictionary
+        {
+            if (player.Value == index) // Find the matching index
+            {
+                player.Key.GetComponent<Stats>().myName.Value = name; // Set the name
+                return;
+            }
+        }
+    }
+
 
     public GameObject GetPlayerGameObjectByIndex(int index)
     {
