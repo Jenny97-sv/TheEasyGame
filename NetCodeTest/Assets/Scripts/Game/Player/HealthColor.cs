@@ -100,15 +100,34 @@ public class HealthColor : NetworkBehaviour
         {
             damageFlashTimer += Time.deltaTime;
             healthOverlay.color = damageFlashColorNet.Value;
-            SetFlashColor();
+            if (SceneHandler.Instance.IsLocalGame) 
+                SetFlashColor();
             if (damageFlashTimer >= damageFlashDuration)
             {
-                stats.myTookDamage.Value = false;
+                SetTookDamageServerRPC();
                 damageFlashTimer = 0;
                 ResetFlashColor();
             }
-            if(!SceneHandler.Instance.IsLocalGame)
+            if (!SceneHandler.Instance.IsLocalGame)
                 SetFlashColorServerRPC();
+        }
+
+        Debug.Log("Health percent = " + healthPercent);
+        Debug.Log("Health color = " + alpha);
+        Debug.Log("Took damage = " + stats.myTookDamage.Value);
+        Debug.Log("Is dead = " + isDead);
+    }
+
+    [ServerRpc]
+    private void SetTookDamageServerRPC()
+    {
+        if (stats.myTookDamage.Value)
+        {
+            stats.myTookDamage.Value = false;
+        }
+        else
+        {
+            stats.myTookDamage.Value = true;
         }
     }
 
@@ -149,7 +168,7 @@ public class HealthColor : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            if (!stats.myTookDamage.Value)
+            if (stats.myTookDamage.Value)
                 SetFlashColor();
             else
             {
@@ -161,6 +180,7 @@ public class HealthColor : NetworkBehaviour
 
     private void SetDeadColor()
     {
+        Debug.Log("Dead color");
         render.material.color = new Color(healthColor.r, healthColor.g, healthColor.b, 1);
         foreach (var renderer in childrenToRender)
         {
