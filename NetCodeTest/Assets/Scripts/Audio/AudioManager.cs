@@ -153,7 +153,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetParameter(eSound sound, float value)
     {
-        Debug.Log("Setting " + sound.ToString() + " to parameter " + value);
+        //Debug.Log("Setting " + sound.ToString() + " to parameter " + value);
 
         if (soundLookup.TryGetValue(sound, out EventInstance instance))
         {
