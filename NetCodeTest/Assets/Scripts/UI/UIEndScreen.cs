@@ -47,7 +47,10 @@ public class UIEndScreen : MonoBehaviour
             AudioManager.Instance.SetPitch(eMusic.Music, 1);
         //AudioManager.Instance.PlayMusic(eMusic.Music);
 
-        AudioManager.Instance.SetPlayerSFXVolume(0);
+        //AudioManager.Instance.SetMusicVolume(0);
+        AudioManager.Instance.SetPlayerSFXVolume(1);
+        Debug.Log("End Screen");
+
 
         if (SceneHandler.Instance.IsLocalGame)
         {

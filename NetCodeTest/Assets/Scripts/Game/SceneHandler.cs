@@ -269,12 +269,12 @@ public class SceneHandler : NetworkBehaviour
         {
             MaxPlayerCount = PlayerCount;
             LoadSceneAndSpawnPlayers(scene);
-            foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
-            {
-                ulong clientID = client.ClientId;
-                Transform transform = client.PlayerObject.gameObject.transform;
-                NotifyClientOfSpawnClientRpc(clientID, transform.position, transform.rotation);
-            }
+            //foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
+            //{
+            //    ulong clientID = client.ClientId;
+            //    Transform transform = client.PlayerObject.gameObject.transform;
+            //    NotifyClientOfSpawnClientRpc(clientID, transform.position, transform.rotation);
+            //}
         }
     }
 

@@ -144,6 +144,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetParameter(eMusic music, float value)
     {
+        Debug.Log("Setting " + music.ToString() + " to parameter " + value);
         if (musicLookup.TryGetValue(music, out EventInstance instance))
         {
             instance.setParameterByName(music.ToString(), value);
@@ -152,6 +153,8 @@ public class AudioManager : MonoBehaviour
 
     public void SetParameter(eSound sound, float value)
     {
+        Debug.Log("Setting " + sound.ToString() + " to parameter " + value);
+
         if (soundLookup.TryGetValue(sound, out EventInstance instance))
         {
             instance.setParameterByName(sound.ToString(), value);

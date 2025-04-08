@@ -286,9 +286,7 @@ public class GameManager : NetworkBehaviour
         if (SceneHandler.Instance.sceneName.Value != SceneName.Scene1)
             yield return null;
 
-        AudioManager.Instance.StopMusic(eMusic.TimeBuffer);
-
-        StopBuffTimerClientRPC();
+        //AudioManager.Instance.StopMusic(eMusic.TimeBuffer);
 
         if (SceneHandler.Instance.IsLocalGame)
         {
@@ -301,7 +299,9 @@ public class GameManager : NetworkBehaviour
 
         yield return new WaitForSecondsRealtime(duration);
 
-        AudioManager.Instance.StopMusic(eMusic.Music);
+        //AudioManager.Instance.StopMusic(eMusic.Music);
+        //AudioManager.Instance.SetMusicVolume(0);
+        Debug.Log("Game manager");
         ReturnPooledObjects();
 
         foreach (GameObject player in players.Keys)
@@ -321,11 +321,6 @@ public class GameManager : NetworkBehaviour
             SceneHandler.Instance.SwitchScene(SceneName.Scene2, players.Count);
         }
 
-    }
-    [ClientRpc]
-    private void StopBuffTimerClientRPC()
-    {
-        AudioManager.Instance.StopMusic(eMusic.TimeBuffer);
     }
 
     [ServerRpc(RequireOwnership = false)]

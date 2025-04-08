@@ -7,6 +7,9 @@ public class Bullet : NetworkBehaviour
     private Vector3 Velocity = Vector3.zero;
     [HideInInspector] public NetworkObject Host = null;
 
+    private float existTimer = 0;
+    private float maxExistTimer = 5;
+
     private void Start()
     {
         StartBullet();
@@ -14,11 +17,18 @@ public class Bullet : NetworkBehaviour
     public void StartBullet()
     {
         Velocity = transform.forward * initialSpeed;
+        existTimer = 0;
     }
 
     private void Update()
     {
         transform.position += Velocity.normalized * initialSpeed * Time.deltaTime;
+        existTimer += Time.deltaTime;
+        if (existTimer >= maxExistTimer)
+        {
+            existTimer = 0;
+            HandleCollision();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

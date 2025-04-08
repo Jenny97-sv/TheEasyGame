@@ -769,11 +769,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 06096a28-e053-482c-9a06-15c13bf8d729
+  cloudProjectId: f35059fb-e1ba-4e3c-bc3f-0e941ca75602
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: NetCodeTest
-  organizationId: jennyap
+  projectName: The Easy Game
+  organizationId: jennyeriksson
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

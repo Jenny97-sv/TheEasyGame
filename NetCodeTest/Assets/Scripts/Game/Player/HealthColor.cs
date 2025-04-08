@@ -112,10 +112,10 @@ public class HealthColor : NetworkBehaviour
                 SetFlashColorServerRPC();
         }
 
-        Debug.Log("Health percent = " + healthPercent);
-        Debug.Log("Health color = " + alpha);
-        Debug.Log("Took damage = " + stats.myTookDamage.Value);
-        Debug.Log("Is dead = " + isDead);
+        //Debug.Log("Health percent = " + healthPercent);
+        //Debug.Log("Health color = " + alpha);
+        //Debug.Log("Took damage = " + stats.myTookDamage.Value);
+        //Debug.Log("Is dead = " + isDead);
     }
 
     [ServerRpc]
@@ -157,7 +157,7 @@ public class HealthColor : NetworkBehaviour
         }
         else
         {
-            Debug.Log("EY!");
+            //Debug.Log("EY!");
             ResetFlashColor();
         }
         SetFlashColorClientRPC();
@@ -168,11 +168,11 @@ public class HealthColor : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            if (stats.myTookDamage.Value)
+            if (!stats.myTookDamage.Value)
                 SetFlashColor();
             else
             {
-                Debug.Log("EY!");
+                //Debug.Log("EY!");
                 ResetFlashColor();
             }
         }
